@@ -1,0 +1,13 @@
+<div class="row text-center p-2 ft-20" *ngIf="!isShowDocuments">
+  <i class="fa fa-spinner fa-spin"></i>
+</div>
+
+<div class="completed-documents" *ngIf="isShowDocuments">
+  <ul>
+    <li *ngFor="let document of completedDocuments; let i = index">   <!-- completedDocuments = [ ["",""], ["",""] ] -->
+      <a target="_blank" href="{{ document[1] }}">
+        <i class="fa fa-file"></i>&nbsp;{{ document[0] }}
+      </a>
+    </li>
+  </ul>
+</div>

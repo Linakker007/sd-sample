@@ -1,0 +1,216 @@
+<div class="container">
+  <div class="row">
+    <div class="tabbed-content-block">
+      <div class="tabbed-content-left">
+        
+        <div class="nav flex-column nav-pills tabbed-content-block-menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link tabbed-content-block-menu-item active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Transaction Details</a>
+          <a class="nav-link tabbed-content-block-menu-item" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Property Type</a>
+          <a class="nav-link tabbed-content-block-menu-item" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"> Address  of land</a>
+          <a class="nav-link tabbed-content-block-menu-item" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Local  Authority </a>
+          <a class="nav-link tabbed-content-block-menu-item" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-parties" role="tab" aria-controls="v-pills-parties" aria-selected="false">parties </a>
+        </div>
+      </div>
+      <div class=" tabbed-content-right">
+        <form [formGroup]="myForm">
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade  active in" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+              <div class="tabbed-content-block-panel"style="
+    background: #fff;
+">
+                <div class="row tabbed-content-block-field">
+                  <div class="col-lg-6">
+                    <label>
+
+                      Type of Property (*):
+                      <select formControlName="property"
+                              required
+                              class="form-control col-8">
+                        <option *ngFor=""
+                                [value]="">
+                        </option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>
+                      Transaction Type (*):
+                      <select formControlName="transaction"
+                              required
+                              class="form-control col-8">
+                        <option *ngFor=""
+                                [value]="">
+                        </option>
+                      </select>
+
+                    </label>
+                  </div>
+                </div>
+                <div class="row tabbed-content-block-field">
+                  <div class="col-lg-6">
+                    <label>
+
+                      Interest transferred or created (*)
+                      <select formControlName="interesttransfer"
+                              required
+                              class="form-control col-8">
+                        <option *ngFor=""
+                                [value]="">
+                        </option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>
+                      Completion Date  (*):
+                      <input  formControlName="completedate" type="date" id="start" name="trip-start"  class="form-control col-8"
+                             value=""
+                             min="" max="">
+                    </label>
+                  </div>
+                </div>
+                <div class="row tabbed-content-block-field">
+                  <div class="col-lg-6">
+                    <label>
+
+                      Any restrictions, covenants or condition affecting the value of the interest transferred or granted? (*)
+                      <select formControlName="anyrestriction"
+                              required
+                              class="form-control col-8">
+                        <option *ngFor=""
+                                [value]="">
+                        </option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>
+                      Details of restrictions, covenants or condition affecting the value of the interest transferred or granted (*):
+
+                      <input formControlName="detailsrestriction" type="text"  class="form-control ">
+                    </label>
+                  </div>
+                </div>
+                <div class="row tabbed-content-block-field">
+                  <div class="col-lg-6">
+                    <label>
+                      Date of Contract or conclusion of missives
+                      <input formControlName="datecontract" type="date" id="start" name="trip-start" class="form-control col-8"
+                             value="2018-07-22"
+                             min="" max="">
+                    </label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>
+                      Is any land exchanged or part exchanged? (*):
+                      <select formControlName="partexchanged"
+                              required
+                              class="form-control col-8">
+                        <option *ngFor=""
+                                [value]="">
+                        </option>
+                      </select>
+
+                    </label>
+                  </div>
+                </div>
+                <div class="row tabbed-content-block-field ">
+                  <div class="col-lg-6">
+                    <label>
+                      Postcode
+                      <input formControlName="postcode" type="text" class="form-control col-8" />
+                    </label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>
+                      House or Building Number
+                      <input formControlName="buildingNumber" type="text" class="form-control" />
+                    </label>
+                  </div>
+                </div>
+                <div class="row tabbed-content-block-field">
+                  <div class="col-lg-6">
+                    <label>
+                      Building Name
+                      <input formControlName="buildingName" type="text" class="form-control" />
+                    </label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>
+                      Street Name
+                      <input formControlName="streetName" type="text" class="form-control" />
+                    </label>
+                  </div>
+                </div>
+                <div class="row tabbed-content-block-field">
+                  <div class="col-lg-6">
+                    <label>
+                      Town
+                      <input formControlName="town" type="text" class="form-control" />
+                    </label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>
+                      County
+                      <input formControlName="county" type="text" class="form-control" />
+                    </label>
+                  </div>
+                </div>
+                <div class="row tabbed-content-block-field">
+                  <div class="col-lg-6">
+                    <label>
+                      Is Transaction Pursant to a previous option (*)
+                      <select formControlName="town"
+                              required
+                              class="form-control col-8">
+                        <option *ngFor=""
+                                [value]="">
+                        </option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>
+                      Number of properties included (*)
+                      <select formControlName="county"
+                              required
+                              class="form-control col-8">
+                        <option *ngFor=""
+                                [value]="">
+                        </option>
+                      </select>
+
+                    </label>
+                  </div>
+                </div>
+                <div class="row tabbed-content-block-field">
+                  <div class="col-lg-6">
+                    <label>
+                      Where more than one property is involved, do you want a certificate for each property?
+                      <select formControlName="town"
+                              required
+                              class="form-control col-8">
+                        <option *ngFor=""
+                                [value]="">
+                        </option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Profile content</div>
+            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Messages content</div>
+            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Settings content</div>
+            <div class="tab-pane fade" id="v-pills-parties" role="tabpanel" aria-labelledby="v-pills-settings-tab">Settings content</div>
+
+          </div>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+

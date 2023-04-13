@@ -1,0 +1,144 @@
+<!-- Modal -->
+<div
+  class="modal {{ styleClass }}"
+  tabindex="-1"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog add-docs modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="tranform-txt">HM Land Registry Add document</h3>
+        <button
+          type="button"
+          class="close close-icon"
+          (click)="closePopup()"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <p>
+          TO ADD AN ADDITIONAL DOCUMENT TO THIS REQUEST, PLEASE SELECT THE
+          RELEVANT DOCUMENT AND COPY TYPE USING THE DROPDOWNS BELOW
+        </p>
+        <div class="alert-danger p-2" *ngIf="errors">{{ errors }}</div>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="additionalDcouments">
+
+          <div class="form-group row">
+            <div class="col-sm-4 font-small">
+              <strong>DOCUMENT NAME: <span style="color: #cc3369">*</span></strong>
+            </div>
+            <div class="col-sm-8">
+              <select formControlName="doctype"
+                      [(ngModel)]="documentType"
+                      required
+                      class="form-control col-8">
+                <option *ngFor="let document of documentKeys"
+                        [value]="document.value">
+                  {{document.text}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4 font-small">
+              <strong>
+                CERTFIED COPY TYPE:
+                <span style="color: #cc3369">*</span>
+              </strong>
+            </div>
+            <div class="col-sm-8">
+              <select required
+                      [(ngModel)]="copyType"
+                      formControlName="copytype"
+                      class="form-control col-8">
+                <option *ngFor="let type of copyTypes" [value]="type.value">
+                  {{ type.text }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row" *ngIf="!additionalDocsFlag">
+
+            <!--<div class="col-sm-4 font-small" *ngIf="!swapflag">
+              <button class="save-btn"
+                      type="button"
+                      (click)="swapEnable()">
+                 swap an existing upload
+              </button>
+            </div>-->
+
+            <div class="col-sm-4 font-small" *ngIf="swapflag">
+              <strong>
+                Swap Existing Documents :
+              </strong>
+            </div>
+            <div class="col-sm-8" *ngIf="swapflag">
+              <select required
+                      [(ngModel)]="swapdocumentType"
+                      formControlName="swapdocument"
+                      class="form-control col-8" (change)="swapdocuments($event)">
+                <option selected value="Select">Select</option>
+                <option *ngFor="let attachment of attachments" [value]="attachment.attachmentId" [attr.data-document]='attachment.docType' [attr.data-copy]='attachment.copyType'>
+                  {{attachment.filename}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <p>
+                Selected files must be in either GIF, JPG, TIFF or PDF format
+              </p>
+            </div>
+            <div class="col-sm-12">
+              <div class="alert-danger" *ngIf="!filesize">
+                Max upto 20 Mb in size allowed.
+              </div>
+              <div class="alert-danger" *ngIf="fileTypeError">
+                Invalid file type.
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <input type="file"
+                     formControlName="filetype"
+                     (change)="readfile($event)"
+                     required
+                     accept="application/pdf,image/jpg,image/jpeg,image/gif,.tiff" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="save-btn btn-gray mr-10"
+                type="button"
+                (click)="closePopup()">
+          CLOSE
+        </button>
+
+        <button *ngIf="swapflag" class="save-btn btn-gray mr-10"
+                [ngClass]="additionalDcouments.valid ? '' : 'disabled'"
+                [disabled]="!additionalDcouments.valid"
+                type="button"
+                (click)="postSwaprequisitionReply()">
+          <i class="fa fa-paper-plane" aria-hidden="true"></i> Swap
+        </button>
+
+        <button *ngIf="!swapflag"
+                class="save-btn"
+                [ngClass]="additionalDcouments.valid ? '' : 'disabled'"
+                [disabled]="!additionalDcouments.valid"
+                type="button"
+                (click)="onPosting()">
+          <i class="fa fa-paper-plane" aria-hidden="true"></i> SEND
+        </button>
+        <i *ngIf="posting" class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade in" [ngStyle]="{ display: displayStyle }"></div>

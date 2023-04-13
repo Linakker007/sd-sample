@@ -1,0 +1,99 @@
+<div class="row text-center p-2 ft-20" *ngIf="!isShowRequesitionMessage">
+  <i class="fa fa-spinner fa-spin"></i>
+</div>
+
+<div class="row" *ngIf="isShowRequesitionMessage">
+  <div class="container">
+    <div *ngIf="requisitions.length == 0">No requisitions found...</div>
+    <div
+      class="row border-1 req-table-row p-1 ml-1 mr-1"
+      *ngFor="let requisition of requisitions"
+    >
+      <div class="container full-max-width-container">
+        <div class="row">
+          <div class="col-md-6 mt-2">
+            <label class="req-table-label">
+              <i
+                (click)="requisition.isExpanded = !requisition.isExpanded"
+                *ngIf="requisition.repliedToHmlr"
+                [ngClass]="
+                  requisition.isExpanded
+                    ? 'bi bi-dash-circle-fill default-alternative-color'
+                    : 'bi bi-plus-circle-fill default-color'
+                "
+                class="p-1"
+              ></i>
+              <a [href]="requisition?.blobUrl" target="_blank">{{
+                requisition.fileName
+              }}</a>
+            </label>
+          </div>
+          <div class="col-md-2 mt-2">
+            <label class="req-table-date">
+              RECEIVED ON
+              {{ requisition.dateReceived | date : "dd/MM/YYYY" }}
+            </label>
+          </div>
+          <div class="col-md-2 mt-2" *ngIf="requisition.repliedToHmlr">
+            <label class="req-table-date">
+              COMPLETED ON
+              {{ requisition.dateReplied | date : "dd/MM/YYYY" }}
+            </label>
+          </div>
+          <div class="col-md-2" *ngIf="!requisition.repliedToHmlr">
+            <button
+              (click)="onReplyRequisition(requisition)"
+              type="button"
+              class="btn btn-primary btn-outline-secondary btn-sm req-table-button pdn-5px"
+            >
+              REPLY
+              <span
+                class="badge badge-dark"
+                style="float: right"
+                >1</span
+              >
+            </button>
+          </div>
+          <div class="col-md-2">
+            <a
+              [href]="requisition.blobUrl"
+              target="_blank"
+              class="btn btn-primary btn-outline-secondary btn-sm req-table-button pdn-5px"
+            >
+              VIEW
+            </a>
+          </div>
+        </div>
+        <div class="row mr-4 ml-1 row-expand" *ngIf="requisition.isExpanded">
+          <div *ngFor="let attachment of requisition.requisitions">
+            <div class="col-md-10">
+              <label class="req-table-label mt-2">
+                <a [href]="attachment.blobUrl"
+                   target="_blank">
+                  {{ SupportingDocumentTypeText(attachment.docType) }} - {{ attachment.filename }}
+                </a>
+              </label>
+            </div>
+            <div class="col-md-2">
+              <a
+                [href]="attachment.blobUrl"
+                target="_blank"
+                class="btn btn-light btn-outline-secondary btn-sm req-table-button pdn-5px white-color"
+              >
+                VIEW
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-reply
+  #ReplyComponent
+  (responseFromChild)="triggerRefresh($event)"
+  [requisition]="selectedRequisition"
+></app-reply>
+
+<input type="hidden" value="{{ requisitions.length }}" id="reqCount" />

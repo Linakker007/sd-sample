@@ -1,0 +1,90 @@
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .btn-upload {
+    background-color: gray;
+    color: #fff;
+    padding: 9px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    border:0px;
+    width: 135px;
+  }
+
+  .disabled
+  {
+      background-color: lightgray !important;
+  }
+
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  .pe-0 {
+    padding: 0px !important;
+  }
+
+  .note{
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .modal-header
+  {
+    border-bottom: none !important;
+  }
+
+
+.btn-gray {
+  background-color: gray !important;
+}
+
+.save-btn {
+  color: white;
+  background-color: #CC3369;
+  border: 1px solid #a8a8a8;
+  padding: 5px 15px;
+}
+
+  .save-btn:hover {
+    background-color: #a8a8a8;
+    color: #fff;
+  }
+
+  .mr-10 {
+    margin-right: 10px !important;
+  }
+
+.tranform-txt {
+  text-transform: capitalize;
+  color: #828282;
+  font-weight: 400;
+}
+
+  .close-icon {
+    position: relative;
+    top: -38px;
+    color: #000;
+    span {
+      font-size: 30px;
+    }
+  }
+
+@media (min-width: 768px) {
+  .modal-dialog.add-docs {
+      margin: 90px auto;
+  }
+}
+
+.font-small
+{
+    font-size: 13px;
+}

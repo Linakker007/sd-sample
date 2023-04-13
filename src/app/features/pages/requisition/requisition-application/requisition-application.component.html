@@ -1,0 +1,51 @@
+<div class="row text-center p-2 ft-20" *ngIf="!isShowApplication">
+  <i class="fa fa-spinner fa-spin"></i>
+</div>
+
+<div class="row" *ngIf="isShowApplication">
+  <div class="container">
+    <div *ngIf="attachments.length == 0">No documents found...</div>
+    <div
+      class="row border-1 req-table-row p-1 ml-1 mr-1"
+      *ngFor="let attachment of attachments"
+    >
+      <div class="col-sm-8 mt-2">
+        <label class="req-table-label">
+          <a [href]="attachment.blobUrl"
+             target="_blank"> {{ attachment.filename }}</a>
+        </label>
+      </div>
+      <div class="col-sm-2 mt-2">
+        <label class="req-table-date">
+          {{ attachment.sentToHmlrDate | date: "dd/MM/YYYY" }}</label
+        >
+      </div>
+      <div class="col-sm-2">
+        <a  [href]="attachment.blobUrl" target="_blank"
+          class="btn btn-primary btn-outline-secondary btn-sm req-table-button pdn-5px"
+        >
+          VIEW
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="d-flex flex-row-reverse mt-5 pdn-5px"
+  *ngIf="attachments.length != 0"
+>
+  <div class="p-2">
+    <button
+      type="button"
+      class="btn btn-primary btn-outline-secondary req-table-button p-1 pdn-5px"
+      (click)="OnActivate()"
+    >
+      <i class="bi bi-plus-circle-fill"></i> ADD APPLICATION DOCUMENT
+    </button>
+  </div>
+  <div class="mt-5 mr-m-2"><i class="bi bi-info-circle-fill"></i></div>
+</div>
+<app-reply 
+  #ReplyComponent
+  (responseFromChild)="triggerRefresh($event)" >
+></app-reply>
